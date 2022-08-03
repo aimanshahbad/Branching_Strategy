@@ -1,0 +1,33 @@
+name: .Devlopment Automate Frontend
+
+# Controls when the action will run.
+# on:
+#   push:
+#     # Pattern matched against refs/tags
+#     tags:
+#       - '*'
+
+on:
+  push:
+    paths-ignore:
+       - .github/workflows/chevron-automate.yml
+       - .github/workflows/devlopment-automate.yml
+    
+    branches:
+      - development
+
+jobs:
+  file_contents:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Read file contents
+        id: read_file
+        uses: andstor/file-reader-action@v1
+        with:
+          path: "infra.txt"
+
+      - name: File contents
+        run: echo "${{ steps.read_file.outputs.contents }}"
