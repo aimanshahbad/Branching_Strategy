@@ -9,11 +9,13 @@ name: .Chevron Prod Automate Frontend
 
 on:
   push:
-    # paths-ignore:
-    #   - .github/workflows/chevron-automate-workflow.yml
+    paths-ignore:
+       - .github/workflows/chevron-automate.yml
+       - .github/workflows/devlopment-automate.yml
+    
     branches:
       - main
-
+      
 jobs:
   file_contents:
     runs-on: ubuntu-latest
